@@ -41,12 +41,10 @@ articleView.handleAuthorFilter = function() {
       // TODO: If the <select> menu was changed to an option that has a value, we first need to hide all the articles, and then show just the ones that match for the author that was selected.
       // Use an "attribute selector" to find those articles, and fade them in for the reader.
       $('article').hide();
-      $(`article[data-author=${$(this).val()}]`).fadeIn();
-
+      $(`article[data-author="${$(this).val()}"]`).fadeIn();
     } else {
       // TODO: If the <select> menu was changed to an option that is blank, we should first
       //show all the articles, except the one article we are using as a template.
-      // $(`article[data-author=${$(this).val('')}]`).show();
       $('article').show();
       $('article.template').hide();
 
@@ -79,17 +77,11 @@ articleView.handleMainNav = function() {
   // TODO: Add an event handler to nav elements that will power the Tabs feature.
   // Clicking any .tab element should hide all the .tab-content sections, and then reveal the single .tab-content section that is associated with the clicked .tab element.
   // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
-  $('ul').on('click', '.tab', function(e){
+  $('nav').on('click','.tab', function(e){
     e.preventDefault();
 
     $('.tab-content').hide();
-    console.log($(this).data());
-    $('#'+$(this).attr('data-content')).show();
-
-    //  if ($(`#category-filter option[value="${category}"]`).length === 0) {
-    //    $('#category-filter').append(optionTag);
-    //  }
-
+    $('#'+$(this).data('content')).show();
   })
   // REVIEW: Now trigger a click on the first .tab element, to set up the page.
   $('nav .tab:first').click();
